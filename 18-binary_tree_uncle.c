@@ -1,5 +1,5 @@
 /*
- * file: 12-binary_tree_leaves.c
+ * file: 18-binary_tree_uncle.c
  * name: Mina Safwat
  * date: 31 Aug 2023
  */
@@ -7,24 +7,21 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_leaves - function that counts the leaves in a binary tree
+ * binary_tree_uncle - function that finds the uncle of a node.
  *
- * @tree: is a pointer to the root node of the tree
- * to count the number of leaves.
+ * @node: is a pointer to the node to find the uncle
  *
- * Return: if tree is NULL return 0 othewise return the height of tree.
+ * Return: must return a pointer to the uncle node otherwise NULL
  */
 
-size_t binary_tree_leaves(const binary_tree_t *tree)
+binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
 
-	if (tree == NULL)
-		return (0);
+	if (node == NULL || node->parent == NULL || node->parent->parent == NULL)
+		return (NULL);
 
-	if (tree->left == NULL && tree->right == NULL)
-	{
-		return (1);
-	}
+	if (node->parent->left == node)
+		return (node->parent->parent->left);
 
-	return (binary_tree_leaves(tree->right) + binary_tree_leaves(tree->left));
+	return (node->parent->parent->right);
 }

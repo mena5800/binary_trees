@@ -1,5 +1,5 @@
 /*
- * file: 12-binary_tree_leaves.c
+ * file: 17-binary_tree_sibling.c
  * name: Mina Safwat
  * date: 31 Aug 2023
  */
@@ -7,24 +7,21 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_leaves - function that counts the leaves in a binary tree
+ * binary_tree_sibling - function that finds the sibling of a node
  *
- * @tree: is a pointer to the root node of the tree
- * to count the number of leaves.
+ * @node: is a pointer to the node to find the sibling
  *
- * Return: if tree is NULL return 0 othewise return the height of tree.
+ * Return: Your function must return a pointer to
+ * the sibling node otherwise NULL.
  */
 
-size_t binary_tree_leaves(const binary_tree_t *tree)
+binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
+	if (node == NULL || node->parent == NULL)
+		return (NULL);
 
-	if (tree == NULL)
-		return (0);
+	if (node->parent->left == node)
+		return (node->parent->right);
 
-	if (tree->left == NULL && tree->right == NULL)
-	{
-		return (1);
-	}
-
-	return (binary_tree_leaves(tree->right) + binary_tree_leaves(tree->left));
+	return (node->parent->left);
 }

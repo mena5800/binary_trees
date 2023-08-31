@@ -1,5 +1,5 @@
 /*
- * file: 12-binary_tree_leaves.c
+ * file: 15-binary_tree_is_full.c
  * name: Mina Safwat
  * date: 31 Aug 2023
  */
@@ -7,15 +7,16 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_leaves - function that counts the leaves in a binary tree
+ * binary_tree_is_full - function that checks if a binary tree is full
  *
  * @tree: is a pointer to the root node of the tree
- * to count the number of leaves.
+ * to check.
  *
- * Return: if tree is NULL return 0 othewise return the height of tree.
+ * Return: if tree is NULL or not full return 0
+ * othewise return 1.
  */
 
-size_t binary_tree_leaves(const binary_tree_t *tree)
+int binary_tree_is_full(const binary_tree_t *tree)
 {
 
 	if (tree == NULL)
@@ -26,5 +27,5 @@ size_t binary_tree_leaves(const binary_tree_t *tree)
 		return (1);
 	}
 
-	return (binary_tree_leaves(tree->right) + binary_tree_leaves(tree->left));
+	return (binary_tree_is_full(tree->left) && binary_tree_is_full(tree->right));
 }
